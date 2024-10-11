@@ -38,11 +38,8 @@ public class ProductController {
 
         if(productService.getRatingProduct(productId) != null) {
             ratingScore = productService.getRatingProduct(productId);
+            System.out.println("thinh ratingScore = " + ratingScore);
         }
-
-        ratingScore /= product.getRatings().size();
-        System.out.println("ratingScore = " + ratingScore);
-
 
         System.out.println("thinh: " + productService.getDiscountPriceProduct(productId));
 

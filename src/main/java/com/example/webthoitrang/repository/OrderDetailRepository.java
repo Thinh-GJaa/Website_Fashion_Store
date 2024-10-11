@@ -46,7 +46,7 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, OrderD
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate);
 
-    @Query("SELECT AVG(od.ratingScore) FROM OrderDetail od WHERE od.orderDetailId.productId = :productId AND od.ratingScore != 0")
+    @Query("SELECT AVG(od.ratingScore) FROM OrderDetail od WHERE od.sizeDetail.product.productId = :productId AND od.ratingScore != 0")
     Double findAverageRatingByProductId(@Param("productId") int productId);
 
 
