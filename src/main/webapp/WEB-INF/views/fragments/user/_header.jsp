@@ -34,12 +34,14 @@
         <!-- Thanh tìm kiếm gọn -->
         <form class="form-inline my-2 my-lg-0" action="/user/home/search" method="get">
             <div class="input-group">
-                <input class="form-control form-control-sm" type="search" name="keyword" placeholder="Tìm kiếm..." aria-label="Search" required>
+                <!-- Thêm style inline để điều chỉnh chiều dài của thanh tìm kiếm -->
+                <input class="form-control form-control-sm" type="search" name="keyword" placeholder="Tìm kiếm..." aria-label="Search" required style="width: 270px;">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success btn-sm" type="submit"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </form>
+
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/user/cart">
