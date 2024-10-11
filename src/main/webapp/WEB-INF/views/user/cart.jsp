@@ -277,11 +277,14 @@
                 const price = parseFloat($(this).find('.cart-item-details .format-vnd').attr('data-price'));
                 const discountPrice = parseFloat($(this).find('.cart-item-details .km ').attr('data-price'));
 
+                console.log(discountPrice);
+
                 const quantity = $(this).find('.cart-item-quantity').val();
 
-                if(discountPrice !== 0){
+                // Kiểm tra discountPrice có hợp lệ và nhỏ hơn giá gốc
+                if (!isNaN(discountPrice) && discountPrice < price) {
                     total += discountPrice * quantity;
-                }else {
+                } else {
                     total += price * quantity;
                 }
             }
