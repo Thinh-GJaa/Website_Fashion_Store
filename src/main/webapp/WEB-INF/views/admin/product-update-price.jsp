@@ -103,6 +103,8 @@
 <script src="/resources/js/common.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+
+
 <script>
     // Hàm định dạng giá tiền
     function formatVND(amount) {
@@ -114,10 +116,22 @@
     }
 
     $(document).ready(function () {
-        // Định dạng giá cho tất cả các phần tử có class 'format-vnd'
+        // Khởi tạo DataTables
+        const table = $('#basicExample').DataTable();
+
+        // Định dạng giá cho tất cả các phần tử có class 'format-vnd' khi trang đầu tiên được tải
         $(".format-vnd").each(function() {
             const price = $(this).data('price');
             $(this).text(formatVND(price));
+        });
+
+        // Lắng nghe sự kiện 'draw' của DataTables, được gọi mỗi khi bảng được vẽ lại
+        table.on('draw', function () {
+            // Định dạng lại giá khi trang thay đổi
+            $(".format-vnd").each(function() {
+                const price = $(this).data('price');
+                $(this).text(formatVND(price));
+            });
         });
 
         // Gắn sự kiện submit cho các form động

@@ -152,11 +152,33 @@
 
 <script>
     $(document).ready(function () {
-        $('.format-vnd').each(function () {
-            let price = $(this).data('price');
+        // $('.format-vnd').each(function () {
+        //     const price = $(this).data('price');
+        //     if (price) {
+        //         $(this).text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price));
+        //     }
+        // });
+
+        // Khởi tạo DataTables
+        const table = $('#basicExample').DataTable();
+
+        // Định dạng giá cho tất cả các phần tử có class 'format-vnd' khi trang đầu tiên được tải
+        $(".format-vnd").each(function() {
+            const price = $(this).data('price');
             if (price) {
                 $(this).text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price));
             }
+        });
+
+        // Lắng nghe sự kiện 'draw' của DataTables, được gọi mỗi khi bảng được vẽ lại
+        table.on('draw', function () {
+            // Định dạng lại giá khi trang thay đổi
+            $(".format-vnd").each(function() {
+                const price = $(this).data('price');
+                if (price) {
+                    $(this).text(new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price));
+                }
+            });
         });
     });
 </script>

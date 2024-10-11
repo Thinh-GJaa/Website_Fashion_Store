@@ -272,6 +272,26 @@
             const selectedStatus = $(this).val();
             window.location.href = '/admin/order/' + selectedStatus;
         });
+
+        // Khởi tạo DataTables
+        const table = $('#basicExample').DataTable();
+
+        // Định dạng giá cho tất cả các phần tử có class 'format-vnd' khi trang đầu tiên được tải
+        $(".format-vnd").each(function() {
+            const price = $(this).data('price');
+            $(this).text(formatVND(price));
+        });
+
+        // Lắng nghe sự kiện 'draw' của DataTables, được gọi mỗi khi bảng được vẽ lại
+        table.on('draw', function () {
+            // Định dạng lại giá khi trang thay đổi
+            $(".format-vnd").each(function() {
+                const price = $(this).data('price');
+                $(this).text(formatVND(price));
+            });
+        });
+
+
     });
 </script>
 
@@ -288,11 +308,11 @@
 
     function approveOrder(orderId) {
 
-        // Định dạng giá cho tất cả các phần tử có class 'format-vnd'
-        $(".format-vnd").each(function () {
-            const price = $(this).data('price');
-            $(this).text(formatVND(price));
-        });
+        // // Định dạng giá cho tất cả các phần tử có class 'format-vnd'
+        // $(".format-vnd").each(function () {
+        //     const price = $(this).data('price');
+        //     $(this).text(formatVND(price));
+        // });
 
         // Gửi yêu cầu duyệt đơn hàng đến máy chủ
         $.ajax({
